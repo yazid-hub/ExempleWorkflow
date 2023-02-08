@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>#workflow-container {
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .step {
+    margin: 20px 0;
+  }
+  
+  button {
+    padding: 10px 20px;
+    margin: 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  input {
+    padding: 10px;
+    margin: 20px;
+    width: 300px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <div id="workflow-container">
+    <div class="step" id="step1">
+      <h2>Etape 1: Ajout de la fiche</h2>
+      <p>Ajoutez les détails de la fiche :</p>
+      <input type="text" id="fiche-details" />
+      <button id="submit-fiche">Soumettre</button>
+    </div>
+    <div class="step" id="step2" style="display: none;">
+      <h2>Etape 2: Vérification de la fiche</h2>
+      <p>La fiche contient-elle des non-conformités ?</p>
+      <button id="yes-non-conformities">Oui</button>
+      <button id="no-non-conformities">Non</button>
+    </div>
+    <div class="step" id="step3" style="display: none;">
+      <h2>Etape 3: Affectation à une société MOE</h2>
+      <p>Affectez la reprise à une société MOE :</p>
+      <input type="text" id="moe-company" />
+      <button id="submit-moe">Soumettre</button>
+    </div>
+    <div class="step" id="step4" style="display: none;">
+      <h2>Etape 4: Réalisation de la reprise</h2>
+      <p>La société MOE réalise-t-elle la reprise ?</p>
+      <button id="yes-realize">Oui</button>
+      <button id="no-realize">Non</button>
+      <button id="refuse-realize">Refuser</button>
+    </div>
+    <div class="step" id="step5" style="display: none;">
+      <h2>Etape 5: Validation de la reprise</h2>
+      <p>L'auteur valide-t-il la reprise ?</p>
+      <button id="yes-validate">Oui</button>
+      <button id="no-validate">Non</button>
+    </div>
+    <div class="step" id="step6" style="display: none;">
+      <h2>Etape 6: Résultat</h2>
+      <p id="result">La fiche est conforme.</p>
+    </div>
+  </div>
+  <script>
+    document.getElementById("submit-fiche").addEventListener("click", function() {
+  document.getElementById("step1").style.display = "none";
+  document.getElementById("step2").style.display = "block";
+});
+
+document.getElementById("yes-non-conformities").addEventListener("click", function() {
+  document.getElementById("step2").style.display = "none";
+  document.getElementById("step3").style.display = "block";
+});
+
+document.getElementById("no-non-conformities").addEventListener("click", function() {
+  document.getElementById("step2").style.display = "none";
+  document.getElementById("step6").style.display = "block";
+  document.getElementById("result").innerHTML = "La fiche est conforme.";
+});
+
+document.getElementById("submit-moe").addEventListener("click", function() {
+  document.getElementById("step3").style.display = "none";
+  document.getElementById("step4").style.display = "block";
+});
+
+document.getElementById("yes-realize").addEventListener("click", function() {
+  document.getElementById("step4").style.display = "none";
+  document.getElementById("step5").style.display = "block";
+});
+
+document.getElementById("no-realize").addEventListener("click", function() {
+  document.getElementById("step4").style.display = "none";
+  document.getElementById("step6").style.display = "block";
+  document.getElementById("result").innerHTML = "La reprise a échoué.";
+});
+
+document.getElementById("refuse-realize").addEventListener("click", function() {
+  document.getElementById("step4").style.display = "none";
+  document.getElementById("step6").style.display = "block";
+  document.getElementById("result").innerHTML = "La réalisation de la reprise est refusée.";
+});
+
+document.getElementById("yes-validate").addEventListener("click", function() {
+  document.getElementById("step5").style.display = "none";
+  document.getElementById("step6").style.display = "block";
+  document.getElementById("result").innerHTML = "La fiche est conforme.";
+});
+
+document.getElementById("no-validate").addEventListener("click", function() {
+  document.getElementById("step5").style.display = "none";
+  document.getElementById("step6").style.display = "block";
+  document.getElementById("result").innerHTML = "La reprise a échoué.";
+});
+
+  </script>
+</body>
+</html>
